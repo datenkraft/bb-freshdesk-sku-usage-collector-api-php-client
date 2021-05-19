@@ -1,0 +1,307 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Backbone Freshdesk SKU Usage Collector API",
+        "description": "Freshdesk SKU Usage Collector",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "UNDEFINED",
+            "description": "Production server"
+        },
+        {
+            "url": "UNDEFINED",
+            "description": "Staging server"
+        },
+        {
+            "url": "https://localhost:30300",
+            "description": "Development server"
+        }
+    ],
+    "paths": {
+        "/docs": {
+            "get": {
+                "tags": [
+                    "docs"
+                ],
+                "summary": "Get the openapi documentation as json",
+                "description": "Get the openapi documentation as json",
+                "operationId": "getOpenApi",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/docs/openapi.{format}": {
+            "get": {
+                "tags": [
+                    "docs"
+                ],
+                "summary": "Get the openapi documentation in the specified format (yaml or json, fallback is json)",
+                "description": "Get the openapi documentation in the specified format (yaml or json, fallback is json)",
+                "operationId": "getOpenApiInFormat",
+                "parameters": [
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "Openapi file format",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "yaml",
+                                "json"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ticket": {
+            "put": {
+                "tags": [
+                    "ticket"
+                ],
+                "summary": "Put Tickets",
+                "description": "Put Tickets",
+                "operationId": "putTickets",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/putTicketsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/putTicketsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "oAuthAuthorization": [
+                            "ticket:put"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "errorResponse": {
+                "properties": {
+                    "errors": {
+                        "description": "errors",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/error"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "description": "Code",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "Message",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ticket": {
+                "required": [
+                    "ticketId",
+                    "status",
+                    "product",
+                    "source",
+                    "createdDate",
+                    "lastUpdatedDate",
+                    "agentReplyCount",
+                    "timesReopened"
+                ],
+                "properties": {
+                    "ticketId": {
+                        "description": "Ticket Id",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "Current Status of the Ticket (e.g. Open)",
+                        "type": "string"
+                    },
+                    "product": {
+                        "description": "Associated Product (Shop)",
+                        "type": "string"
+                    },
+                    "source": {
+                        "description": "Source of the Ticket (e.g. Email)",
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "description": "Date when the Ticket was created",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastUpdatedDate": {
+                        "description": "Date when the Ticket was last updated",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "agentReplyCount": {
+                        "description": "Number of Agent Replies",
+                        "type": "integer"
+                    },
+                    "timesReopened": {
+                        "description": "Number of times a Ticket was reopened",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "putTicketsRequest": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ticket"
+                }
+            },
+            "putTicketsResponse": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ticket"
+                }
+            }
+        },
+        "securitySchemes": {
+            "oAuthAuthorization": {
+                "type": "oauth2",
+                "description": "OAuth2 Authorization",
+                "flows": {
+                    "clientCredentials": {
+                        "tokenUrl": "UNDEFINED",
+                        "refreshUrl": "UNDEFINED",
+                        "scopes": {
+                            "ticket:put": "Put Tickets"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
