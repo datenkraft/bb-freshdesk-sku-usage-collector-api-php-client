@@ -121,7 +121,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
         // ticketId is string
-        $this->requestData[0]['ticketId'] = '123';
+        $this->requestData[0]['ticketId'] = 'someString';
 
         $this->builder
             ->given('The ticketId in the request is a string')
