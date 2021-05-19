@@ -21,6 +21,7 @@ dist/
 
 # Maven
 target/
+dist/
 
 # JetBrains IDE
 .idea/
@@ -60,4 +61,3 @@ pacts/
 .composer/
 .ash_history
 .php_cs.cache
-

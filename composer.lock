@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "495693b761b890532d78aa6c0f0eea5a",
+    "content-hash": "447150a701f37a1b06a1b1a28324107e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -74,16 +74,16 @@
         },
         {
             "name": "datenkraft/bb-base-api-php-client",
-            "version": "dev-main",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/datenkraft/bb-base-api-php-client.git",
-                "reference": "86d2647a15fbe9b8bcdb91c158943fcf3889501c"
+                "reference": "06d926d64d34e5615c9979b7def2343a7b7e30bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/datenkraft/bb-base-api-php-client/zipball/86d2647a15fbe9b8bcdb91c158943fcf3889501c",
-                "reference": "86d2647a15fbe9b8bcdb91c158943fcf3889501c",
+                "url": "https://api.github.com/repos/datenkraft/bb-base-api-php-client/zipball/06d926d64d34e5615c9979b7def2343a7b7e30bf",
+                "reference": "06d926d64d34e5615c9979b7def2343a7b7e30bf",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,6 @@
                 "phpunit/phpunit": "^9.5",
                 "squizlabs/php_codesniffer": "^3.6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -123,9 +122,9 @@
             ],
             "support": {
                 "issues": "https://github.com/datenkraft/bb-base-api-php-client/issues",
-                "source": "https://github.com/datenkraft/bb-base-api-php-client/tree/main"
+                "source": "https://github.com/datenkraft/bb-base-api-php-client/tree/v1.0.2"
             },
-            "time": "2021-05-12T11:27:55+00:00"
+            "time": "2021-05-18T06:18:29+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -7729,9 +7728,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "datenkraft/bb-base-api-php-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
