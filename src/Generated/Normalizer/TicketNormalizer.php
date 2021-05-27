@@ -67,7 +67,9 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         $data = array();
         $data['ticketId'] = $object->getTicketId();
         $data['status'] = $object->getStatus();
-        $data['product'] = $object->getProduct();
+        if (null !== $object->getProduct()) {
+            $data['product'] = $object->getProduct();
+        }
         $data['source'] = $object->getSource();
         $data['createdDate'] = $object->getCreatedDate()->format('Y-m-d\\TH:i:sP');
         $data['lastUpdatedDate'] = $object->getLastUpdatedDate()->format('Y-m-d\\TH:i:sP');
