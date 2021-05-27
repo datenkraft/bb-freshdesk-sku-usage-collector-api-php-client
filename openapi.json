@@ -222,6 +222,18 @@
                     "message": {
                         "description": "Message",
                         "type": "string"
+                    },
+                    "extra": {
+                        "$ref": "#/components/schemas/errorExtra"
+                    }
+                },
+                "type": "object"
+            },
+            "errorExtra": {
+                "properties": {
+                    "ticketId": {
+                        "description": "Ticket Id",
+                        "type": "integer"
                     }
                 },
                 "type": "object"
@@ -230,7 +242,6 @@
                 "required": [
                     "ticketId",
                     "status",
-                    "product",
                     "source",
                     "createdDate",
                     "lastUpdatedDate",
