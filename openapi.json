@@ -259,7 +259,8 @@
                     },
                     "product": {
                         "description": "Associated Product (Shop)",
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                     },
                     "source": {
                         "description": "Source of the Ticket (e.g. Email)",

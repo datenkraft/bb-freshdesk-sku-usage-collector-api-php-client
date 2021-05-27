@@ -19,7 +19,7 @@ class Ticket
     /**
      * Associated Product (Shop)
      *
-     * @var string
+     * @var string|null
      */
     protected $product;
     /**
@@ -97,20 +97,20 @@ class Ticket
     /**
      * Associated Product (Shop)
      *
-     * @return string
+     * @return string|null
      */
-    public function getProduct() : string
+    public function getProduct() : ?string
     {
         return $this->product;
     }
     /**
      * Associated Product (Shop)
      *
-     * @param string $product
+     * @param string|null $product
      *
      * @return self
      */
-    public function setProduct(string $product) : self
+    public function setProduct(?string $product) : self
     {
         $this->product = $product;
         return $this;
