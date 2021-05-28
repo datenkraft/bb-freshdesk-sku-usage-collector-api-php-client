@@ -42,8 +42,11 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (\array_key_exists('status', $data)) {
             $object->setStatus($data['status']);
         }
-        if (\array_key_exists('product', $data)) {
+        if (\array_key_exists('product', $data) && $data['product'] !== null) {
             $object->setProduct($data['product']);
+        }
+        elseif (\array_key_exists('product', $data) && $data['product'] === null) {
+            $object->setProduct(null);
         }
         if (\array_key_exists('source', $data)) {
             $object->setSource($data['source']);
