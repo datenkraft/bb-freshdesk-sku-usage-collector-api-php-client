@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class SKUUsageConsumerAddSKUUsageTest
+ * Class SKUUsageConsumerPutSKUUsageTest
  * @package Pact
  */
 class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsageCollectorConsumerTest
