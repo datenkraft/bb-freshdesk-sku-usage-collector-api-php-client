@@ -154,6 +154,16 @@
                             }
                         }
                     },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/errorResponse"
+                                }
+                            }
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "content": {
@@ -188,7 +198,7 @@
                 "security": [
                     {
                         "oAuthAuthorization": [
-                            "ticket:put"
+                            "bb-freshdesk-su-col-api/ticket:put"
                         ]
                     }
                 ]
@@ -258,9 +268,9 @@
                         "type": "string"
                     },
                     "product": {
+                        "nullable": true,
                         "description": "Associated Product (Shop)",
-                        "type": "string",
-                        "nullable": true
+                        "type": "string"
                     },
                     "source": {
                         "description": "Source of the Ticket (e.g. Email)",
@@ -294,6 +304,7 @@
                 }
             },
             "putTicketsResponse": {
+                "description": "Class TicketResource",
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/ticket"
@@ -309,7 +320,7 @@
                         "tokenUrl": "UNDEFINED",
                         "refreshUrl": "UNDEFINED",
                         "scopes": {
-                            "ticket:put": "Put Tickets"
+                            "bb-freshdesk-su-col-api/ticket:put": "Update Tickets in the Freshdesk SKU Usage Collector API"
                         }
                     }
                 }
