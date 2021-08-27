@@ -34,7 +34,6 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
             'Content-Type' => 'application/json'
         ];
 
-        /** @var DateTime $createdDate */
         $createdDate = (new DateTime());
         $updatedDate = $createdDate->add(new DateInterval('PT1H'));
         $this->requestData = [
@@ -60,7 +59,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         parent::tearDown();
     }
 
-    public function testPutFreshdeskSKUUsageSuccess()
+    public function testPutFreshdeskSKUUsageSuccess(): void
     {
         $this->expectedStatusCode = '201';
 
@@ -75,7 +74,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageUnauthorized()
+    public function testPutFreshdeskSKUUsageUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -94,7 +93,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageForbidden()
+    public function testPutFreshdeskSKUUsageForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -113,7 +112,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageBadRequest()
+    public function testPutFreshdeskSKUUsageBadRequest(): void
     {
         // Error code in response is 400
         $this->expectedStatusCode = '400';
@@ -130,10 +129,27 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->beginTest();
     }
 
+    public function testPutFreshdeskSKUUsageUnprocessableEntity(): void
+    {
+        // Error code in response is 422
+        $this->expectedStatusCode = '422';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        // ticketId is not unique inside of request body
+        $this->requestData[1] = $this->requestData[0];
+
+        $this->builder
+            ->given('The ticketId is not unique inside of request body')
+            ->uponReceiving('UnprocessableEntity PUT request to /ticket');
+
+        $this->responseData = $this->errorResponse;
+        $this->beginTest();
+    }
+
     /**
      * @throws Exception
      */
-    public function testPutFreshdeskSKUUsageMultipleErrors()
+    public function testPutFreshdeskSKUUsageMultipleErrors(): void
     {
         // status is int
         $this->requestData[0]['status'] = 123456;
