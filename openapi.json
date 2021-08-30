@@ -112,13 +112,13 @@
                 ],
                 "summary": "Put Tickets",
                 "description": "Put Tickets",
-                "operationId": "putTickets",
+                "operationId": "putTicketCollection",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/putTicketsRequest"
+                                "$ref": "#/components/schemas/putTicketCollectionRequest"
                             }
                         }
                     }
@@ -129,7 +129,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/putTicketsResponse"
+                                    "$ref": "#/components/schemas/putTicketCollectionResponse"
                                 }
                             }
                         }
@@ -297,13 +297,13 @@
                 },
                 "type": "object"
             },
-            "putTicketsRequest": {
+            "putTicketCollectionRequest": {
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/ticket"
                 }
             },
-            "putTicketsResponse": {
+            "putTicketCollectionResponse": {
                 "description": "Class TicketResource",
                 "type": "array",
                 "items": {

@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception;
 
-class PutTicketsUnprocessableEntityException extends UnprocessableEntityException
+class PutTicketCollectionUnprocessableEntityException extends UnprocessableEntityException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse $errorResponse)
