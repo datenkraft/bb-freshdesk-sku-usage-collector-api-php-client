@@ -2,19 +2,22 @@
 
 namespace Pact;
 
+use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
+use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
+use Datenkraft\Backbone\Client\BaseApi\Exceptions\ConfigException;
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Client;
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket;
 use DateTime;
 use DateInterval;
 use DateTimeInterface;
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class SKUUsageConsumerPutSKUUsageTest
  * @package Pact
  */
-class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsageCollectorConsumerTest
+class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends FreshdeskSKUUsageCollectorConsumerTest
 {
 
     /**
@@ -59,22 +62,19 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         parent::tearDown();
     }
 
-    public function testPutFreshdeskSKUUsageSuccess(): void
+    public function testPutTicketCollectionSuccess(): void
     {
         $this->expectedStatusCode = '201';
 
         // Build and register the interaction
         $this->builder
-            ->given(
-                'A Freshdesl SKU with ticketId exists (update) or does not exist (create), ' .
-                'the request is valid, the token is valid and has a valid scope'
-            )
+            ->given('The request is valid, the token is valid and has a valid scope')
             ->uponReceiving('Successful PUT request to /ticket');
 
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageUnauthorized(): void
+    public function testPutTicketCollectionUnauthorized(): void
     {
         // Invalid token
         $this->token = 'invalid_token';
@@ -93,7 +93,7 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageForbidden(): void
+    public function testPutTicketCollectionForbidden(): void
     {
         // Token with invalid scope
         $this->token = getenv('VALID_TOKEN_SKU_USAGE_POST');
@@ -105,41 +105,24 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
         unset($this->errorResponse['errors'][0]['extra']);
 
         $this->builder
-            ->given('A Freshdesk SKU, the request is valid, the token is valid with an invalid scope')
+            ->given('The request is valid, the token is valid with an invalid scope')
             ->uponReceiving('Forbidden POST request to /sku-usage');
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
     }
 
-    public function testPutFreshdeskSKUUsageBadRequest(): void
-    {
-        // Error code in response is 400
-        $this->expectedStatusCode = '400';
-        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
-
-        // ticketId is string
-        $this->requestData[0]['ticketId'] = 'someString';
-
-        $this->builder
-            ->given('The ticketId in the request is a string')
-            ->uponReceiving('Bad PUT request to /ticket');
-
-        $this->responseData = $this->errorResponse;
-        $this->beginTest();
-    }
-
-    public function testPutFreshdeskSKUUsageUnprocessableEntity(): void
+    public function testPutTicketCollectionUnprocessableEntity(): void
     {
         // Error code in response is 422
         $this->expectedStatusCode = '422';
         $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
 
-        // ticketId is not unique inside of request body
+        // ticketId is not unique in the request body
         $this->requestData[1] = $this->requestData[0];
 
         $this->builder
-            ->given('The ticketId is not unique inside of request body')
+            ->given('The ticketId is not unique inside in the request body')
             ->uponReceiving('UnprocessableEntity PUT request to /ticket');
 
         $this->responseData = $this->errorResponse;
@@ -147,59 +130,32 @@ class SKUUsageConsumerPutFreshdeskSKUUsageCollectorTest extends FreshdeskSKUUsag
     }
 
     /**
-     * @throws Exception
-     */
-    public function testPutFreshdeskSKUUsageMultipleErrors(): void
-    {
-        // status is int
-        $this->requestData[0]['status'] = 123456;
-        // product is int
-        $this->requestData[0]['product'] = 123456;
-
-        // Status code of the response is 400
-        $this->expectedStatusCode = '400';
-
-        // Error code of first error is 400
-        $this->errorResponse['errors'][0] = [
-            'code' => '400',
-            'message' => $this->matcher->like('Example error message'),
-            'extra' => [
-                'ticketId' => 123
-            ],
-        ];
-
-        // Error code of second error is 400
-        $this->errorResponse['errors'][1] = [
-            'code' => '400',
-            'message' => $this->matcher->like('Example error message'),
-            'extra' => [
-                'ticketId' => 123
-            ],
-        ];
-
-        $this->builder
-            ->given('product is a int, status is a int')
-            ->uponReceiving(
-                'PUT request to /ticket with product int and status int'
-            );
-
-        $this->responseData = $this->errorResponse;
-        $this->beginTest();
-    }
-
-    /**
      * @return ResponseInterface
-     * @throws GuzzleException
+     * @throws ConfigException
+     * @throws AuthException
+     * @throws Exception
      */
     protected function doClientRequest(): ResponseInterface
     {
-        $client = new Client(['base_uri' => $this->config->getBaseUri()]);
-        $options = [
-            'body' => json_encode($this->requestData),
-            'headers' => $this->requestHeaders,
-            'http_errors' => false,
-        ];
+        $factory = new ClientFactory(
+            ['clientId' => 'test', 'clientSecret' => 'test', 'oAuthTokenUrl' => 'test', 'oAuthScopes' => ['test']]
+        );
+        $factory->setToken($this->token);
+        $client = Client::createWithFactory($factory, $this->config->getBaseUri());
 
-        return $client->put($this->path, $options);
+        $tickets = [];
+        foreach ($this->requestData as $requestData) {
+            $tickets[] = (new Ticket())
+                ->setStatus($requestData['status'])
+                ->setProduct($requestData['product'])
+                ->setLastUpdatedDate(new DateTime($requestData['lastUpdatedDate']))
+                ->setTimesReopened($requestData['timesReopened'])
+                ->setAgentReplyCount($requestData['agentReplyCount'])
+                ->setCreatedDate(new DateTime($requestData['createdDate']))
+                ->setSource($requestData['source'])
+                ->setTicketId($requestData['ticketId']);
+        }
+
+        return $client->putTicketCollection($tickets, Client::FETCH_RESPONSE);
     }
 }
