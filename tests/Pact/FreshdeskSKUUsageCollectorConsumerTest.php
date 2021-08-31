@@ -3,6 +3,8 @@
 namespace Pact;
 
 use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PhpPact\Consumer\InteractionBuilder;
 use PhpPact\Consumer\Matcher\Matcher;
@@ -19,6 +21,8 @@ abstract class FreshdeskSKUUsageCollectorConsumerTest extends TestCase
 {
     protected InteractionBuilder $builder;
     protected MockServerEnvConfig $config;
+
+    protected Client $guzzleClient;
 
     protected string $expectedExceptionClass = GuzzleException::class;
 
@@ -53,7 +57,6 @@ abstract class FreshdeskSKUUsageCollectorConsumerTest extends TestCase
 
         // Try to open a connection to the mock server to verify that it was started with the PactTestListener
         try {
-//            var_dump($this->config->getHost(), $this->config->getPort());
             fsockopen($this->config->getHost(), $this->config->getPort());
         } catch (Exception $exception) {
             throw new Exception(
@@ -61,6 +64,8 @@ abstract class FreshdeskSKUUsageCollectorConsumerTest extends TestCase
                 $exception->getMessage()
             );
         }
+
+        $this->guzzleClient = new GuzzleHttpClient(['base_uri' => $this->config->getBaseUri()]);
 
         // Create the interaction builder
         $this->builder = new InteractionBuilder($this->config);

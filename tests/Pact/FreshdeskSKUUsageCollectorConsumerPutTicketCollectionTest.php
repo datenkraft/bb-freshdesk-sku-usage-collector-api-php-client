@@ -11,6 +11,7 @@ use DateTime;
 use DateInterval;
 use DateTimeInterface;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -55,6 +56,8 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
         $this->responseData = $this->requestData;
 
         $this->path = '/ticket';
+
+        $this->errorResponse['errors'][0]['extra'] = ['ticketId' => $this->requestData[0]['ticketId']];
     }
 
     public function tearDown(): void
@@ -127,6 +130,79 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
 
         $this->responseData = $this->errorResponse;
         $this->beginTest();
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function testPatchTicketCollectionBadRequest(): void
+    {
+        // status is int
+        $this->requestData[0]['status'] = 123;
+
+        // Error code in response is 400
+        $this->expectedStatusCode = '400';
+        $this->errorResponse['errors'][0]['code'] = strval($this->expectedStatusCode);
+
+        $this->builder
+            ->given('The request body is invalid or missing')
+            ->uponReceiving('Bad PATCH request to /ticket');
+
+        $this->responseData = $this->errorResponse;
+
+        // Use guzzle because our client throws an exception if you set 'status' to a non string value
+        $this->prepareTest();
+
+        $options = [
+            'headers' => $this->requestHeaders,
+            'http_errors' => false,
+            'body' => json_encode($this->requestData),
+        ];
+        $response = $this->guzzleClient->put($this->path, $options);
+
+        $this->assertEquals($this->expectedStatusCode, $response->getStatusCode());
+        $this->assertJson($response->getBody());
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function testPatchTicketCollectionMultipleErrors(): void
+    {
+        // ticketId is not unique in the request body
+        $this->requestData[1] = $this->requestData[0];
+
+        // status is int
+        $this->requestData[0]['status'] = 123;
+
+        // Error code in response is 400
+        $this->expectedStatusCode = '400';
+
+        // Error code of first error is 422
+        $this->errorResponse['errors'][0]['code'] = '422';
+
+        // Error code of second error is 400
+        $this->errorResponse['errors'][1] = $this->errorResponse['errors'][0];
+        $this->errorResponse['errors'][1]['code'] = '400';
+
+        $this->builder
+            ->given('The request body is invalid or missing and the ticketId is not unique inside in the request body')
+            ->uponReceiving('Multiple Errors PATCH request to /ticket');
+
+        $this->responseData = $this->errorResponse;
+
+        // Use guzzle because our client throws an exception if you set 'status' to a non string value
+        $this->prepareTest();
+
+        $options = [
+            'headers' => $this->requestHeaders,
+            'http_errors' => false,
+            'body' => json_encode($this->requestData),
+        ];
+        $response = $this->guzzleClient->put($this->path, $options);
+
+        $this->assertEquals($this->expectedStatusCode, $response->getStatusCode());
+        $this->assertJson($response->getBody());
     }
 
     /**
