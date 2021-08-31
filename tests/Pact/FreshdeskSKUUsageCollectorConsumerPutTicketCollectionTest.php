@@ -15,7 +15,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class SKUUsageConsumerPutSKUUsageTest
+ * Class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest
  * @package Pact
  */
 class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends FreshdeskSKUUsageCollectorConsumerTest
@@ -135,7 +135,7 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
     /**
      * @throws GuzzleException
      */
-    public function testPatchTicketCollectionBadRequest(): void
+    public function testPutTicketCollectionBadRequest(): void
     {
         // status is int
         $this->requestData[0]['status'] = 123;
@@ -146,7 +146,7 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
 
         $this->builder
             ->given('The request body is invalid or missing')
-            ->uponReceiving('Bad PATCH request to /ticket');
+            ->uponReceiving('Bad PUT request to /ticket');
 
         $this->responseData = $this->errorResponse;
 
@@ -167,7 +167,7 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
     /**
      * @throws GuzzleException
      */
-    public function testPatchTicketCollectionMultipleErrors(): void
+    public function testPutTicketCollectionMultipleErrors(): void
     {
         // ticketId is not unique in the request body
         $this->requestData[1] = $this->requestData[0];
@@ -187,7 +187,7 @@ class FreshdeskSKUUsageCollectorConsumerPutTicketCollectionTest extends Freshdes
 
         $this->builder
             ->given('The request body is invalid or missing and the ticketId is not unique inside in the request body')
-            ->uponReceiving('Multiple Errors PATCH request to /ticket');
+            ->uponReceiving('Multiple Errors PUT request to /ticket');
 
         $this->responseData = $this->errorResponse;
 
