@@ -2,7 +2,7 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception;
 
-class GetAuthRoleIdentityCollectionEndpointUnauthorizedException extends UnauthorizedException
+class GetAuthRoleCollectionUnauthorizedException extends UnauthorizedException
 {
     private $errorResponse;
     public function __construct(\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse $errorResponse)
