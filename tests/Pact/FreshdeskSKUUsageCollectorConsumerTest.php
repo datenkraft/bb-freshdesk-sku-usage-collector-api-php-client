@@ -82,7 +82,7 @@ abstract class FreshdeskSKUUsageCollectorConsumerTest extends TestCase
 
         // Authorization token for the request header
         // To be replaced by an actually valid token later to successfully verify the contract with the provider
-        $this->token = getenv('VALID_TOKEN_TICKET_PUT');
+        $this->token = getenv('CONTRACT_TEST_CLIENT_TOKEN');
     }
 
     protected function tearDown(): void

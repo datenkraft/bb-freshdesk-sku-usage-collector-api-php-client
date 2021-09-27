@@ -521,14 +521,7 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "oAuthAuthorization": [
-                            "bb-freshdesk-su-col-api/ticket:put"
-                        ]
-                    }
-                ]
+                }
             }
         }
     },
@@ -715,9 +708,7 @@
                     "clientCredentials": {
                         "tokenUrl": "UNDEFINED",
                         "refreshUrl": "UNDEFINED",
-                        "scopes": {
-                            "bb-freshdesk-su-col-api/ticket:put": "Update Tickets in the Freshdesk SKU Usage Collector API"
-                        }
+                        "scopes": {}
                     }
                 }
             }

@@ -72,6 +72,6 @@ class PutTicketCollection extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageC
     }
     public function getAuthenticationScopes() : array
     {
-        return array('oAuthAuthorization');
+        return array();
     }
 }
