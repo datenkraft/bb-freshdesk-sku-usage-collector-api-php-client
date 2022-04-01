@@ -57,11 +57,8 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         if (\array_key_exists('lastUpdatedDate', $data)) {
             $object->setLastUpdatedDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastUpdatedDate']));
         }
-        if (\array_key_exists('agentReplyCount', $data)) {
-            $object->setAgentReplyCount($data['agentReplyCount']);
-        }
-        if (\array_key_exists('timesReopened', $data)) {
-            $object->setTimesReopened($data['timesReopened']);
+        if (\array_key_exists('resolvedDate', $data)) {
+            $object->setResolvedDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['resolvedDate']));
         }
         return $object;
     }
@@ -76,8 +73,7 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         $data['source'] = $object->getSource();
         $data['createdDate'] = $object->getCreatedDate()->format('Y-m-d\\TH:i:sP');
         $data['lastUpdatedDate'] = $object->getLastUpdatedDate()->format('Y-m-d\\TH:i:sP');
-        $data['agentReplyCount'] = $object->getAgentReplyCount();
-        $data['timesReopened'] = $object->getTimesReopened();
+        $data['resolvedDate'] = $object->getResolvedDate()->format('Y-m-d\\TH:i:sP');
         return $data;
     }
 }

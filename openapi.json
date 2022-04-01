@@ -2,20 +2,20 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Backbone Freshdesk SKU Usage Collector API",
-        "description": "Freshdesk SKU Usage Collector",
+        "description": "Backbone Freshdesk SKU Usage Collector API",
         "version": "1.0.0"
     },
     "servers": [
         {
-            "url": "UNDEFINED",
+            "url": "https://freshdesk-sku-usage-collector-api.conqore.niceshops.com/v1",
             "description": "Production server"
         },
         {
-            "url": "UNDEFINED",
+            "url": "https://freshdesk-sku-usage-collector-api.staging.backbone.datenkraft.info/v1",
             "description": "Staging server"
         },
         {
-            "url": "https://localhost:30300",
+            "url": "https://localhost:30330/v1",
             "description": "Development server"
         }
     ],
@@ -201,16 +201,6 @@
                             }
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
                     "409": {
                         "description": "Conflict",
                         "content": {
@@ -358,26 +348,6 @@
                 "responses": {
                     "200": {
                         "description": "OK"
-                    },
-                    "500": {
-                        "description": "Server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -408,118 +378,6 @@
                 "responses": {
                     "200": {
                         "description": "OK"
-                    },
-                    "500": {
-                        "description": "Server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/ticket": {
-            "put": {
-                "tags": [
-                    "ticket"
-                ],
-                "summary": "Put Tickets",
-                "description": "Put Tickets",
-                "operationId": "putTicketCollection",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/putTicketCollectionRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/putTicketCollectionResponse"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/errorResponse"
-                                }
-                            }
-                        }
                     }
                 }
             }
@@ -568,6 +426,64 @@
                 },
                 "type": "object"
             },
+            "ticket": {
+                "required": [
+                    "ticketId",
+                    "status",
+                    "source",
+                    "createdDate",
+                    "lastUpdatedDate",
+                    "resolvedDate"
+                ],
+                "properties": {
+                    "ticketId": {
+                        "description": "Ticket Id",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "Current Status of the Ticket (e.g. Open)",
+                        "type": "string"
+                    },
+                    "product": {
+                        "description": "Associated Product (Shop)",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "source": {
+                        "description": "Source of the Ticket (e.g. Email)",
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "description": "Date when the Ticket was created",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "lastUpdatedDate": {
+                        "description": "Date when the Ticket was last updated",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "resolvedDate": {
+                        "description": "Date when the Ticket was resolved",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "putTicketCollectionRequest": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ticket"
+                }
+            },
+            "putTicketCollectionResponse": {
+                "description": "Class TicketResource",
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/ticket"
+                }
+            },
             "authPermissionResource": {
                 "required": [
                     "permissionCode",
@@ -589,29 +505,6 @@
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/authPermissionResource"
-                }
-            },
-            "authRoleResource": {
-                "required": [
-                    "roleCode",
-                    "name"
-                ],
-                "properties": {
-                    "roleCode": {
-                        "description": "Role Code",
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Name",
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
-            "authRoleCollection": {
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/authRoleResource"
                 }
             },
             "authRoleIdentityResource": {
@@ -637,66 +530,27 @@
                     "$ref": "#/components/schemas/authRoleIdentityResource"
                 }
             },
-            "ticket": {
+            "authRoleResource": {
                 "required": [
-                    "ticketId",
-                    "status",
-                    "source",
-                    "createdDate",
-                    "lastUpdatedDate",
-                    "agentReplyCount",
-                    "timesReopened"
+                    "roleCode",
+                    "name"
                 ],
                 "properties": {
-                    "ticketId": {
-                        "description": "Ticket Id",
-                        "type": "integer"
-                    },
-                    "status": {
-                        "description": "Current Status of the Ticket (e.g. Open)",
+                    "roleCode": {
+                        "description": "Role Code",
                         "type": "string"
                     },
-                    "product": {
-                        "nullable": true,
-                        "description": "Associated Product (Shop)",
+                    "name": {
+                        "description": "Name",
                         "type": "string"
-                    },
-                    "source": {
-                        "description": "Source of the Ticket (e.g. Email)",
-                        "type": "string"
-                    },
-                    "createdDate": {
-                        "description": "Date when the Ticket was created",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "lastUpdatedDate": {
-                        "description": "Date when the Ticket was last updated",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "agentReplyCount": {
-                        "description": "Number of Agent Replies",
-                        "type": "integer"
-                    },
-                    "timesReopened": {
-                        "description": "Number of times a Ticket was reopened",
-                        "type": "integer"
                     }
                 },
                 "type": "object"
             },
-            "putTicketCollectionRequest": {
+            "authRoleCollection": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/ticket"
-                }
-            },
-            "putTicketCollectionResponse": {
-                "description": "Class TicketResource",
-                "type": "array",
-                "items": {
-                    "$ref": "#/components/schemas/ticket"
+                    "$ref": "#/components/schemas/authRoleResource"
                 }
             }
         },
@@ -706,7 +560,7 @@
                 "description": "OAuth2 Authorization",
                 "flows": {
                     "clientCredentials": {
-                        "tokenUrl": "UNDEFINED",
+                        "tokenUrl": "https://localhost:30370/oauth/token",
                         "refreshUrl": "UNDEFINED",
                         "scopes": {}
                     }

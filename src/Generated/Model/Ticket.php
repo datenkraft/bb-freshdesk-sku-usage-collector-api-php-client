@@ -41,17 +41,11 @@ class Ticket
      */
     protected $lastUpdatedDate;
     /**
-     * Number of Agent Replies
+     * Date when the Ticket was resolved
      *
-     * @var int
+     * @var \DateTime
      */
-    protected $agentReplyCount;
-    /**
-     * Number of times a Ticket was reopened
-     *
-     * @var int
-     */
-    protected $timesReopened;
+    protected $resolvedDate;
     /**
      * Ticket Id
      *
@@ -179,45 +173,24 @@ class Ticket
         return $this;
     }
     /**
-     * Number of Agent Replies
+     * Date when the Ticket was resolved
      *
-     * @return int
+     * @return \DateTime
      */
-    public function getAgentReplyCount() : int
+    public function getResolvedDate() : \DateTime
     {
-        return $this->agentReplyCount;
+        return $this->resolvedDate;
     }
     /**
-     * Number of Agent Replies
+     * Date when the Ticket was resolved
      *
-     * @param int $agentReplyCount
+     * @param \DateTime $resolvedDate
      *
      * @return self
      */
-    public function setAgentReplyCount(int $agentReplyCount) : self
+    public function setResolvedDate(\DateTime $resolvedDate) : self
     {
-        $this->agentReplyCount = $agentReplyCount;
-        return $this;
-    }
-    /**
-     * Number of times a Ticket was reopened
-     *
-     * @return int
-     */
-    public function getTimesReopened() : int
-    {
-        return $this->timesReopened;
-    }
-    /**
-     * Number of times a Ticket was reopened
-     *
-     * @param int $timesReopened
-     *
-     * @return self
-     */
-    public function setTimesReopened(int $timesReopened) : self
-    {
-        $this->timesReopened = $timesReopened;
+        $this->resolvedDate = $resolvedDate;
         return $this;
     }
 }
