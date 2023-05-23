@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model;
 
-class Ticket
+class Ticket extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Ticket Id
      *
@@ -64,6 +72,7 @@ class Ticket
      */
     public function setTicketId(int $ticketId) : self
     {
+        $this->initialized['ticketId'] = true;
         $this->ticketId = $ticketId;
         return $this;
     }
@@ -85,6 +94,7 @@ class Ticket
      */
     public function setStatus(string $status) : self
     {
+        $this->initialized['status'] = true;
         $this->status = $status;
         return $this;
     }
@@ -106,6 +116,7 @@ class Ticket
      */
     public function setProduct(?string $product) : self
     {
+        $this->initialized['product'] = true;
         $this->product = $product;
         return $this;
     }
@@ -127,6 +138,7 @@ class Ticket
      */
     public function setSource(string $source) : self
     {
+        $this->initialized['source'] = true;
         $this->source = $source;
         return $this;
     }
@@ -148,6 +160,7 @@ class Ticket
      */
     public function setCreatedDate(\DateTime $createdDate) : self
     {
+        $this->initialized['createdDate'] = true;
         $this->createdDate = $createdDate;
         return $this;
     }
@@ -169,6 +182,7 @@ class Ticket
      */
     public function setLastUpdatedDate(\DateTime $lastUpdatedDate) : self
     {
+        $this->initialized['lastUpdatedDate'] = true;
         $this->lastUpdatedDate = $lastUpdatedDate;
         return $this;
     }
@@ -190,6 +204,7 @@ class Ticket
      */
     public function setResolvedDate(\DateTime $resolvedDate) : self
     {
+        $this->initialized['resolvedDate'] = true;
         $this->resolvedDate = $resolvedDate;
         return $this;
     }

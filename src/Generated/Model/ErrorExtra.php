@@ -2,8 +2,16 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model;
 
-class ErrorExtra
+class ErrorExtra extends \ArrayObject
 {
+    /**
+     * @var array
+     */
+    protected $initialized = array();
+    public function isInitialized($property) : bool
+    {
+        return array_key_exists($property, $this->initialized);
+    }
     /**
      * Ticket Id
      *
@@ -28,6 +36,7 @@ class ErrorExtra
      */
     public function setTicketId(int $ticketId) : self
     {
+        $this->initialized['ticketId'] = true;
         $this->ticketId = $ticketId;
         return $this;
     }
