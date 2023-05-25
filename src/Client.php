@@ -7,7 +7,11 @@ namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi;
 use Datenkraft\Backbone\Client\BaseApi\ClientFactory;
 use Datenkraft\Backbone\Client\BaseApi\Exceptions\AuthException;
 
-class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Client
+/**
+ * Class Client
+ * @package Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi
+ */
+class Client extends Generated\Client
 {
     /**
      * @param ClientFactory $clientFactory

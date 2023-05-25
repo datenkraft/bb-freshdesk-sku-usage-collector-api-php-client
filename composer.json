@@ -1,6 +1,6 @@
 {
   "name": "datenkraft/bb-freshdesk-sku-usage-collector-api-php-client",
-  "description": "The Freshdesk Sku Usage Collector API PHP Client enables you to work with the Freshdesk Sku Usage Collector API",
+  "description": "The Freshdesk SKU Usage Collector API PHP Client enables you to work with the Freshdesk SKU Usage Collector API",
   "type": "library",
   "require": {
     "php": "^8.0",
