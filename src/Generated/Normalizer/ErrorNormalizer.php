@@ -57,10 +57,6 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
             $object->setReferences($values);
             unset($data['references']);
         }
-        if (\array_key_exists('extra', $data)) {
-            $object->setExtra($this->denormalizer->denormalize($data['extra'], 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\ErrorExtra', 'json', $context));
-            unset($data['extra']);
-        }
         foreach ($data as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {
                 $object[$key] = $value_1;
@@ -82,9 +78,6 @@ class ErrorNormalizer implements DenormalizerInterface, NormalizerInterface, Den
                 $values[] = $this->normalizer->normalize($value, 'json', $context);
             }
             $data['references'] = $values;
-        }
-        if ($object->isInitialized('extra') && null !== $object->getExtra()) {
-            $data['extra'] = $this->normalizer->normalize($object->getExtra(), 'json', $context);
         }
         foreach ($object as $key => $value_1) {
             if (preg_match('/.*/', (string) $key)) {

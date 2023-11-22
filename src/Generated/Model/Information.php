@@ -31,12 +31,6 @@ class Information extends \ArrayObject
      */
     protected $references;
     /**
-     * 
-     *
-     * @var ErrorExtra
-     */
-    protected $extra;
-    /**
      * Code
      *
      * @return string
@@ -100,28 +94,6 @@ class Information extends \ArrayObject
     {
         $this->initialized['references'] = true;
         $this->references = $references;
-        return $this;
-    }
-    /**
-     * 
-     *
-     * @return ErrorExtra
-     */
-    public function getExtra() : ErrorExtra
-    {
-        return $this->extra;
-    }
-    /**
-     * 
-     *
-     * @param ErrorExtra $extra
-     *
-     * @return self
-     */
-    public function setExtra(ErrorExtra $extra) : self
-    {
-        $this->initialized['extra'] = true;
-        $this->extra = $extra;
         return $this;
     }
 }
