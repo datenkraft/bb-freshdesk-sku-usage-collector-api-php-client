@@ -7,8 +7,8 @@ class Ticket extends \ArrayObject
     /**
      * @var array
      */
-    protected $initialized = array();
-    public function isInitialized($property) : bool
+    protected $initialized = [];
+    public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
@@ -59,7 +59,7 @@ class Ticket extends \ArrayObject
      *
      * @return int
      */
-    public function getTicketId() : int
+    public function getTicketId(): int
     {
         return $this->ticketId;
     }
@@ -70,7 +70,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setTicketId(int $ticketId) : self
+    public function setTicketId(int $ticketId): self
     {
         $this->initialized['ticketId'] = true;
         $this->ticketId = $ticketId;
@@ -81,7 +81,7 @@ class Ticket extends \ArrayObject
      *
      * @return string
      */
-    public function getStatus() : string
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -92,7 +92,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setStatus(string $status) : self
+    public function setStatus(string $status): self
     {
         $this->initialized['status'] = true;
         $this->status = $status;
@@ -103,7 +103,7 @@ class Ticket extends \ArrayObject
      *
      * @return string|null
      */
-    public function getProduct() : ?string
+    public function getProduct(): ?string
     {
         return $this->product;
     }
@@ -114,7 +114,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setProduct(?string $product) : self
+    public function setProduct(?string $product): self
     {
         $this->initialized['product'] = true;
         $this->product = $product;
@@ -125,7 +125,7 @@ class Ticket extends \ArrayObject
      *
      * @return string
      */
-    public function getSource() : string
+    public function getSource(): string
     {
         return $this->source;
     }
@@ -136,7 +136,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setSource(string $source) : self
+    public function setSource(string $source): self
     {
         $this->initialized['source'] = true;
         $this->source = $source;
@@ -147,7 +147,7 @@ class Ticket extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getCreatedDate() : \DateTime
+    public function getCreatedDate(): \DateTime
     {
         return $this->createdDate;
     }
@@ -158,7 +158,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setCreatedDate(\DateTime $createdDate) : self
+    public function setCreatedDate(\DateTime $createdDate): self
     {
         $this->initialized['createdDate'] = true;
         $this->createdDate = $createdDate;
@@ -169,7 +169,7 @@ class Ticket extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getLastUpdatedDate() : \DateTime
+    public function getLastUpdatedDate(): \DateTime
     {
         return $this->lastUpdatedDate;
     }
@@ -180,7 +180,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setLastUpdatedDate(\DateTime $lastUpdatedDate) : self
+    public function setLastUpdatedDate(\DateTime $lastUpdatedDate): self
     {
         $this->initialized['lastUpdatedDate'] = true;
         $this->lastUpdatedDate = $lastUpdatedDate;
@@ -191,7 +191,7 @@ class Ticket extends \ArrayObject
      *
      * @return \DateTime
      */
-    public function getResolvedDate() : \DateTime
+    public function getResolvedDate(): \DateTime
     {
         return $this->resolvedDate;
     }
@@ -202,7 +202,7 @@ class Ticket extends \ArrayObject
      *
      * @return self
      */
-    public function setResolvedDate(\DateTime $resolvedDate) : self
+    public function setResolvedDate(\DateTime $resolvedDate): self
     {
         $this->initialized['resolvedDate'] = true;
         $this->resolvedDate = $resolvedDate;

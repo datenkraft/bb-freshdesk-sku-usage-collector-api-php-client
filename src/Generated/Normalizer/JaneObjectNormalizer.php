@@ -16,32 +16,67 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    protected $normalizers = array('Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuditLog' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuditLogNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuditLogCollection' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuditLogCollectionNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthPermissionResource' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthPermissionResourceNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthPermissionRolePaginatedCollection' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthPermissionRolePaginatedCollectionNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthPermissionRoleResource' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthPermissionRoleResourceNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthRoleCollection' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthRoleCollectionNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthRoleIdentityPaginatedCollection' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthRoleIdentityPaginatedCollectionNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthRoleIdentityResource' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthRoleIdentityResourceNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\AuthRoleResource' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\AuthRoleResourceNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Collection' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\CollectionNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\CollectionPagination' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\CollectionPaginationNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Error' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\ErrorNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\ErrorReferencesItem' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\ErrorReferencesItemNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\ErrorResponse' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\ErrorResponseNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\GetAuthPermissionCollectionResponse' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\GetAuthPermissionCollectionResponseNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Information' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\InformationNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\InformationResponse' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\InformationResponseNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\NewAuthRoleResource' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\NewAuthRoleResourceNormalizer', 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Ticket' => 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Normalizer\\TicketNormalizer', '\\Jane\\Component\\JsonSchemaRuntime\\Reference' => '\\Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Runtime\\Normalizer\\ReferenceNormalizer'), $normalizersCache = array();
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    protected $normalizers = [
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLog::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuditLogNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLogCollection::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuditLogCollectionNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionResource::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthPermissionResourceNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRolePaginatedCollection::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthPermissionRolePaginatedCollectionNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthPermissionRoleResourceNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleCollection::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthRoleCollectionNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityPaginatedCollection::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthRoleIdentityPaginatedCollectionNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthRoleIdentityResourceNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\AuthRoleResourceNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Collection::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\CollectionNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\CollectionPagination::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\CollectionPaginationNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Error::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\ErrorNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorReferencesItem::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\ErrorReferencesItemNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\ErrorResponseNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\GetAuthPermissionCollectionResponse::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\GetAuthPermissionCollectionResponseNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Information::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\InformationNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\InformationResponse::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\InformationResponseNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\NewAuthRoleResourceNormalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\TicketNormalizer::class,
+        
+        \Jane\Component\JsonSchemaRuntime\Reference::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\Normalizer\ReferenceNormalizer::class,
+    ], $normalizersCache = [];
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
         return array_key_exists($type, $this->normalizers);
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return is_object($data) && array_key_exists(get_class($data), $this->normalizers);
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $normalizerClass = $this->normalizers[get_class($object)];
+        $normalizerClass = $this->normalizers[get_class($data)];
         $normalizer = $this->getNormalizer($normalizerClass);
-        return $normalizer->normalize($object, $format, $context);
+        return $normalizer->normalize($data, $format, $context);
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        $denormalizerClass = $this->normalizers[$class];
+        $denormalizerClass = $this->normalizers[$type];
         $denormalizer = $this->getNormalizer($denormalizerClass);
-        return $denormalizer->denormalize($data, $class, $format, $context);
+        return $denormalizer->denormalize($data, $type, $format, $context);
     }
     private function getNormalizer(string $normalizerClass)
     {
@@ -54,5 +89,31 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         $normalizer->setDenormalizer($this->denormalizer);
         $this->normalizersCache[$normalizerClass] = $normalizer;
         return $normalizer;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [
+            
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLog::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLogCollection::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionResource::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRolePaginatedCollection::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleCollection::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityPaginatedCollection::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Collection::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\CollectionPagination::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Error::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorReferencesItem::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\GetAuthPermissionCollectionResponse::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Information::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\InformationResponse::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class => false,
+            \Jane\Component\JsonSchemaRuntime\Reference::class => false,
+        ];
     }
 }

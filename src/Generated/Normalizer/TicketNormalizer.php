@@ -5,7 +5,6 @@ namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Nor
 use Jane\Component\JsonSchemaRuntime\Reference;
 use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\Normalizer\CheckArray;
 use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\Normalizer\ValidatorTrait;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -18,18 +17,15 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
     use NormalizerAwareTrait;
     use CheckArray;
     use ValidatorTrait;
-    public function supportsDenormalization($data, $type, $format = null, array $context = array()) : bool
+    public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
     {
-        return $type === 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Ticket';
+        return $type === \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class;
     }
-    public function supportsNormalization($data, $format = null, array $context = array()) : bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
-        return is_object($data) && get_class($data) === 'Datenkraft\\Backbone\\Client\\FreshdeskSkuUsageCollectorApi\\Generated\\Model\\Ticket';
+        return is_object($data) && get_class($data) === \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class;
     }
-    /**
-     * @return mixed
-     */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         if (isset($data['$ref'])) {
             return new Reference($data['$ref'], $context['document-origin']);
@@ -61,15 +57,15 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
             unset($data['source']);
         }
         if (\array_key_exists('createdDate', $data)) {
-            $object->setCreatedDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['createdDate']));
+            $object->setCreatedDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['createdDate']));
             unset($data['createdDate']);
         }
         if (\array_key_exists('lastUpdatedDate', $data)) {
-            $object->setLastUpdatedDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['lastUpdatedDate']));
+            $object->setLastUpdatedDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['lastUpdatedDate']));
             unset($data['lastUpdatedDate']);
         }
         if (\array_key_exists('resolvedDate', $data)) {
-            $object->setResolvedDate(\DateTime::createFromFormat('Y-m-d\\TH:i:sP', $data['resolvedDate']));
+            $object->setResolvedDate(\DateTime::createFromFormat('Y-m-d\TH:i:sP', $data['resolvedDate']));
             unset($data['resolvedDate']);
         }
         foreach ($data as $key => $value) {
@@ -79,26 +75,27 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         }
         return $object;
     }
-    /**
-     * @return array|string|int|float|bool|\ArrayObject|null
-     */
-    public function normalize($object, $format = null, array $context = array())
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
-        $data = array();
-        $data['ticketId'] = $object->getTicketId();
-        $data['status'] = $object->getStatus();
-        if ($object->isInitialized('product') && null !== $object->getProduct()) {
-            $data['product'] = $object->getProduct();
+        $dataArray = [];
+        $dataArray['ticketId'] = $data->getTicketId();
+        $dataArray['status'] = $data->getStatus();
+        if ($data->isInitialized('product') && null !== $data->getProduct()) {
+            $dataArray['product'] = $data->getProduct();
         }
-        $data['source'] = $object->getSource();
-        $data['createdDate'] = $object->getCreatedDate()->format('Y-m-d\\TH:i:sP');
-        $data['lastUpdatedDate'] = $object->getLastUpdatedDate()->format('Y-m-d\\TH:i:sP');
-        $data['resolvedDate'] = $object->getResolvedDate()->format('Y-m-d\\TH:i:sP');
-        foreach ($object as $key => $value) {
+        $dataArray['source'] = $data->getSource();
+        $dataArray['createdDate'] = $data->getCreatedDate()?->format('Y-m-d\TH:i:sP');
+        $dataArray['lastUpdatedDate'] = $data->getLastUpdatedDate()?->format('Y-m-d\TH:i:sP');
+        $dataArray['resolvedDate'] = $data->getResolvedDate()?->format('Y-m-d\TH:i:sP');
+        foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
-                $data[$key] = $value;
+                $dataArray[$key] = $value;
             }
         }
-        return $data;
+        return $dataArray;
+    }
+    public function getSupportedTypes(?string $format = null): array
+    {
+        return [\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class => false];
     }
 }
