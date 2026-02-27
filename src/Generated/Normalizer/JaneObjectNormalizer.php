@@ -56,6 +56,12 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
         
         \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\TicketNormalizer::class,
         
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsProcessingStatusGetResponse200::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\TicketStatisticsProcessingStatusGetResponse200Normalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsResolvedTicketsGetResponse200::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\TicketStatisticsResolvedTicketsGetResponse200Normalizer::class,
+        
+        \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Normalizer\TicketStatisticsTicketAnswersGetResponse200Normalizer::class,
+        
         \Jane\Component\JsonSchemaRuntime\Reference::class => \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\Normalizer\ReferenceNormalizer::class,
     ], $normalizersCache = [];
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
@@ -113,6 +119,9 @@ class JaneObjectNormalizer implements DenormalizerInterface, NormalizerInterface
             \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\InformationResponse::class => false,
             \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource::class => false,
             \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsProcessingStatusGetResponse200::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsResolvedTicketsGetResponse200::class => false,
+            \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200::class => false,
             \Jane\Component\JsonSchemaRuntime\Reference::class => false,
         ];
     }
