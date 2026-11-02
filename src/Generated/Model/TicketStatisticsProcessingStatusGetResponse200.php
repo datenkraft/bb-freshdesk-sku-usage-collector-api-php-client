@@ -2,42 +2,17 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model;
 
-class TicketStatisticsProcessingStatusGetResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalPropertiesInterface;
+class TicketStatisticsProcessingStatusGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
-    /**
-     * 
-     *
      * @var bool
      */
-    protected $processing;
-    /**
-     * 
-     *
-     * @return bool
-     */
-    public function getProcessing(): bool
+    public bool $processing;
+    public function definedProperties(): array
     {
-        return $this->processing;
-    }
-    /**
-     * 
-     *
-     * @param bool $processing
-     *
-     * @return self
-     */
-    public function setProcessing(bool $processing): self
-    {
-        $this->initialized['processing'] = true;
-        $this->processing = $processing;
-        return $this;
+        return ['processing' => 'processing'];
     }
 }

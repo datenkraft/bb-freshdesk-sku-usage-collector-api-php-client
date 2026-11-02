@@ -2,42 +2,17 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model;
 
-class TicketStatisticsTicketAnswersGetResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalPropertiesInterface;
+class TicketStatisticsTicketAnswersGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
-    /**
-     * 
-     *
      * @var int
      */
-    protected $sum;
-    /**
-     * 
-     *
-     * @return int
-     */
-    public function getSum(): int
+    public int $sum;
+    public function definedProperties(): array
     {
-        return $this->sum;
-    }
-    /**
-     * 
-     *
-     * @param int $sum
-     *
-     * @return self
-     */
-    public function setSum(int $sum): self
-    {
-        $this->initialized['sum'] = true;
-        $this->sum = $sum;
-        return $this;
+        return ['sum' => 'sum'];
     }
 }
