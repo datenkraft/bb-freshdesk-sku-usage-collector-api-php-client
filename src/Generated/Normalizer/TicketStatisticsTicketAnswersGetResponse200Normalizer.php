@@ -27,18 +27,18 @@ class TicketStatisticsTicketAnswersGetResponse200Normalizer implements Denormali
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
-        }
         if (\array_key_exists('sum', $data)) {
-            $object->setSum($data['sum']);
+            $object->sum = $data['sum'];
             unset($data['sum']);
         }
         foreach ($data as $key => $value) {
@@ -51,10 +51,10 @@ class TicketStatisticsTicketAnswersGetResponse200Normalizer implements Denormali
     public function normalize(mixed $data, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         $dataArray = [];
-        if ($data->isInitialized('sum') && null !== $data->getSum()) {
-            $dataArray['sum'] = $data->getSum();
+        if (array_key_exists('sum', get_object_vars($data)) && null !== ($data->sum ?? null)) {
+            $dataArray['sum'] = $data->sum;
         }
-        foreach ($data as $key => $value) {
+        foreach ($data->additionalPropertyEntries() as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;
             }

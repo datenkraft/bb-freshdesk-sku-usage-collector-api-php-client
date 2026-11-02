@@ -2,42 +2,17 @@
 
 namespace Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model;
 
-class TicketStatisticsResolvedTicketsGetResponse200 extends \ArrayObject
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalAndPatternProperties;
+use Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Runtime\AdditionalPropertiesInterface;
+class TicketStatisticsResolvedTicketsGetResponse200 implements AdditionalPropertiesInterface
 {
+    use AdditionalAndPatternProperties;
     /**
-     * @var array
-     */
-    protected $initialized = [];
-    public function isInitialized($property): bool
-    {
-        return array_key_exists($property, $this->initialized);
-    }
-    /**
-     * 
-     *
      * @var int
      */
-    protected $count;
-    /**
-     * 
-     *
-     * @return int
-     */
-    public function getCount(): int
+    public int $count;
+    public function definedProperties(): array
     {
-        return $this->count;
-    }
-    /**
-     * 
-     *
-     * @param int $count
-     *
-     * @return self
-     */
-    public function setCount(int $count): self
-    {
-        $this->initialized['count'] = true;
-        $this->count = $count;
-        return $this;
+        return ['count' => 'count'];
     }
 }

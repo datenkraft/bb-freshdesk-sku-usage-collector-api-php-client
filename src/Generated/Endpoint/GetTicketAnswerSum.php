@@ -6,14 +6,13 @@ class GetTicketAnswerSum extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCo
 {
     /**
      * Get the sum of ticket answers for given domains and date range.
-     *
-     * @param array $queryParameters {
-     *     @var array $domains[] Array of email domains to filter by
-     *     @var string $dateFrom Start date (ISO 8601)
-     *     @var string $dateTo End date (ISO 8601)
-     * }
+     * @param array{
+     *    "domains[]": array, //Array of email domains to filter by
+     *    "dateFrom": string, //Start date (ISO 8601)
+     *    "dateTo": string, //End date (ISO 8601)
+     * } $queryParameters
      */
-    public function __construct(array $queryParameters = [])
+    public function __construct(array $queryParameters)
     {
         $this->queryParameters = $queryParameters;
     }
@@ -26,7 +25,7 @@ class GetTicketAnswerSum extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCo
     {
         return '/ticket-statistics/ticket-answers';
     }
-    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer, $streamFactory = null): array
+    public function getBody(\Symfony\Component\Serializer\SerializerInterface $serializer): array
     {
         return [[], null];
     }
@@ -45,6 +44,10 @@ class GetTicketAnswerSum extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCo
         $optionsResolver->addAllowedTypes('dateTo', ['string']);
         return $optionsResolver;
     }
+    protected function getQueryStyles(): array
+    {
+        return ['domains' => ['style' => 'form', 'explode' => true]];
+    }
     /**
      * {@inheritdoc}
      *
@@ -52,33 +55,41 @@ class GetTicketAnswerSum extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCo
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumUnauthorizedException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumForbiddenException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumConflictException
-     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
+     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\BadResponseException
      *
      * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200
      */
-    protected function transformResponseBody(\Psr\Http\Message\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
+    protected function transformResponseBody(\Symfony\Contracts\HttpClient\ResponseInterface $response, \Symfony\Component\Serializer\SerializerInterface $serializer, ?string $contentType = null)
     {
         $status = $response->getStatusCode();
-        $body = (string) $response->getBody();
-        if (is_null($contentType) === false && (200 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+        $body = $response->getContent(false);
+        if ($contentType !== null && (200 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             return $serializer->deserialize($body, 'Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200', 'json');
         }
-        if (is_null($contentType) === false && (400 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+        if ($contentType !== null && (400 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumBadRequestException($serializer->deserialize($body, 'Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (401 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+        if ($contentType !== null && (401 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumUnauthorizedException($serializer->deserialize($body, 'Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (403 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+        if ($contentType !== null && (403 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumForbiddenException($serializer->deserialize($body, 'Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse', 'json'), $response);
         }
-        if (is_null($contentType) === false && (409 === $status && mb_strpos($contentType, 'application/json') !== false)) {
+        if ($contentType !== null && (409 === $status && stripos(strtolower($contentType), 'application/json') !== false)) {
             throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumConflictException($serializer->deserialize($body, 'Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse', 'json'), $response);
         }
-        throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException($status, $body);
+        throw new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\BadResponseException($status, $body, $response);
     }
     public function getAuthenticationScopes(): array
     {
         return ['oAuthAuthorization', 'bearerAuth'];
+    }
+    public function getFetchMode(): string
+    {
+        return \Jane\Component\OpenApiRuntime\Client\FetchMode::Eager->value;
+    }
+    public function getTargetClass(): ?string
+    {
+        return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200::class;
     }
 }
