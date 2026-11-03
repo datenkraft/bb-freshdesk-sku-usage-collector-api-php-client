@@ -8,7 +8,7 @@ class GetTicketAnswerSum extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCo
      * Get the sum of ticket answers for given domains and date range.
      *
      * @param array $queryParameters {
-     *     @var array $domains[] Array of email domains to filter by
+     *     @var array $domains Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
      *     @var string $dateFrom Start date (ISO 8601)
      *     @var string $dateTo End date (ISO 8601)
      * }
