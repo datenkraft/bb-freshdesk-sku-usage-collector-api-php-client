@@ -1546,10 +1546,12 @@
                 "operationId": "getResolvedTicketCount",
                 "parameters": [
                     {
-                        "name": "domains[]",
+                        "name": "domains",
                         "in": "query",
-                        "description": "Array of email domains to filter by",
+                        "description": "Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`",
                         "required": true,
+                        "style": "deepObject",
+                        "explode": true,
                         "schema": {
                             "type": "array",
                             "items": {
@@ -1656,10 +1658,12 @@
                 "operationId": "getTicketAnswerSum",
                 "parameters": [
                     {
-                        "name": "domains[]",
+                        "name": "domains",
                         "in": "query",
-                        "description": "Array of email domains to filter by",
+                        "description": "Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`",
                         "required": true,
+                        "style": "deepObject",
+                        "explode": true,
                         "schema": {
                             "type": "array",
                             "items": {

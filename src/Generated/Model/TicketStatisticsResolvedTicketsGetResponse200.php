@@ -13,14 +13,10 @@ class TicketStatisticsResolvedTicketsGetResponse200 extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
-     *
      * @var int
      */
     protected $count;
     /**
-     * 
-     *
      * @return int
      */
     public function getCount(): int
@@ -28,8 +24,6 @@ class TicketStatisticsResolvedTicketsGetResponse200 extends \ArrayObject
         return $this->count;
     }
     /**
-     * 
-     *
      * @param int $count
      *
      * @return self
