@@ -291,7 +291,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     /**
      * Get the count of resolved tickets for given domains and date range.
      * @param array{
-     *    "domains[]": array, //Array of email domains to filter by
+     *    "domains": array, //Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
      *    "dateFrom": string, //Start date (ISO 8601)
      *    "dateTo": string, //End date (ISO 8601)
      * } $queryParameters
@@ -310,7 +310,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     /**
      * Get the sum of ticket answers for given domains and date range.
      * @param array{
-     *    "domains[]": array, //Array of email domains to filter by
+     *    "domains": array, //Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
      *    "dateFrom": string, //Start date (ISO 8601)
      *    "dateTo": string, //End date (ISO 8601)
      * } $queryParameters

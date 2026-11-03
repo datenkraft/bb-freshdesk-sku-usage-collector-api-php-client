@@ -7,7 +7,7 @@ class GetResolvedTicketCount extends \Datenkraft\Backbone\Client\FreshdeskSkuUsa
     /**
      * Get the count of resolved tickets for given domains and date range.
      * @param array{
-     *    "domains[]": array, //Array of email domains to filter by
+     *    "domains": array, //Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
      *    "dateFrom": string, //Start date (ISO 8601)
      *    "dateTo": string, //End date (ISO 8601)
      * } $queryParameters
@@ -46,7 +46,7 @@ class GetResolvedTicketCount extends \Datenkraft\Backbone\Client\FreshdeskSkuUsa
     }
     protected function getQueryStyles(): array
     {
-        return ['domains' => ['style' => 'form', 'explode' => true]];
+        return ['domains' => ['style' => 'deepObject', 'explode' => true]];
     }
     /**
      * {@inheritdoc}
