@@ -13,14 +13,10 @@ class TicketStatisticsTicketAnswersGetResponse200 extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
-     *
      * @var int
      */
     protected $sum;
     /**
-     * 
-     *
      * @return int
      */
     public function getSum(): int
@@ -28,8 +24,6 @@ class TicketStatisticsTicketAnswersGetResponse200 extends \ArrayObject
         return $this->sum;
     }
     /**
-     * 
-     *
      * @param int $sum
      *
      * @return self

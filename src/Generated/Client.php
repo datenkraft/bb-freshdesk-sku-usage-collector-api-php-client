@@ -6,18 +6,18 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
 {
     /**
     * Get the audit log.
-    *
-    * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
+    * @param array{
+    *    "page"?: int, //The page to read. Default is the first page.
+    *    "pageSize"?: int, //The maximum size per page is 100. Default is 100.
+    *    "paginationMode"?: string, //The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
-    *     @var string $filter[endpoint] A filter for restricting the audit log to a endpoint.
-    *     @var string $filter[version] A filter for restricting the audit log to a endpoint version.
-    *     @var mixed $filter[identifier] A filter for querying actions for a identifier.
-    * }
+    *    "filter[endpoint]"?: string, //A filter for restricting the audit log to a endpoint.
+    *    "filter[version]"?: string, //A filter for restricting the audit log to a endpoint version.
+    *    "filter[identifier]"?: mixed, //A filter for querying actions for a identifier.
+    * } $queryParameters
+    
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuditLogCollectionBadRequestException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuditLogCollectionUnauthorizedException
@@ -25,7 +25,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuditLogCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLogCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuditLogCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
     */
     public function getAuditLogCollection(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -33,8 +33,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Delete one or more role to permission assignments in this resource server
-     *
-     * @param null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
+     * @param null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[] $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthPermissionRoleCollectionBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthPermissionRoleCollectionUnauthorizedException
@@ -43,7 +42,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthPermissionRoleCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function deleteAuthPermissionRoleCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
     {
@@ -51,22 +50,22 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
     * Get all role to permission assignments from this resource server
-    *
-    * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
+    * @param array{
+    *    "page"?: int, //The page to read. Default is the first page.
+    *    "pageSize"?: int, //The maximum size per page is 100. Default is 100.
+    *    "paginationMode"?: string, //The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
-    * }
+    * } $queryParameters
+    
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionRoleCollectionUnauthorizedException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionRoleCollectionForbiddenException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionRoleCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRolePaginatedCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRolePaginatedCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
     */
     public function getAuthPermissionRoleCollection(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -74,8 +73,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Create one or more role to permission assignments in this resource server
-     *
-     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[] $requestBody 
+     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[] $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthPermissionRoleCollectionBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthPermissionRoleCollectionUnauthorizedException
@@ -85,7 +83,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthPermissionRoleCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthPermissionRoleResource[]|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function postAuthPermissionRoleCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
     {
@@ -93,22 +91,22 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
     * Get all permissions from this resource server
-    *
-    * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
+    * @param array{
+    *    "page"?: int, //The page to read. Default is the first page.
+    *    "pageSize"?: int, //The maximum size per page is 100. Default is 100.
+    *    "paginationMode"?: string, //The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
-    * }
+    * } $queryParameters
+    
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionCollectionUnauthorizedException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionCollectionForbiddenException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthPermissionCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\GetAuthPermissionCollectionResponse|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\GetAuthPermissionCollectionResponse|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
     */
     public function getAuthPermissionCollection(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -116,8 +114,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Delete one or more role to identity assignments in this resource server
-     *
-     * @param null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[] $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthRoleIdentityCollectionBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthRoleIdentityCollectionUnauthorizedException
@@ -126,7 +123,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthRoleIdentityCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function deleteAuthRoleIdentityCollection(?array $requestBody = null, string $fetch = self::FETCH_OBJECT)
     {
@@ -134,22 +131,22 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
     * Get all role to identity assignments from this resource server
-    *
-    * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
+    * @param array{
+    *    "page"?: int, //The page to read. Default is the first page.
+    *    "pageSize"?: int, //The maximum size per page is 100. Default is 100.
+    *    "paginationMode"?: string, //The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
-    * }
+    * } $queryParameters
+    
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleIdentityCollectionUnauthorizedException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleIdentityCollectionForbiddenException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleIdentityCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityPaginatedCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityPaginatedCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
     */
     public function getAuthRoleIdentityCollection(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -157,8 +154,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Create one or more role to identity assignments in this resource server
-     *
-     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[] $requestBody 
+     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[] $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleIdentityCollectionBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleIdentityCollectionUnauthorizedException
@@ -168,7 +164,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleIdentityCollectionInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleIdentityResource[]|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function postAuthRoleIdentityCollection(array $requestBody, string $fetch = self::FETCH_OBJECT)
     {
@@ -176,22 +172,22 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
     * Get all available roles from this resource server
-    *
-    * @param array $queryParameters {
-    *     @var int $page The page to read. Default is the first page.
-    *     @var int $pageSize The maximum size per page is 100. Default is 100.
-    *     @var string $paginationMode The paginationMode to use:
+    * @param array{
+    *    "page"?: int, //The page to read. Default is the first page.
+    *    "pageSize"?: int, //The maximum size per page is 100. Default is 100.
+    *    "paginationMode"?: string, //The paginationMode to use:
     - default: The total number of items in the collection will not be calculated.
     - totalCount: The total number of items in the collection will be calculated.
     This can mean loss of performance.
-    * }
+    * } $queryParameters
+    
     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleCollectionUnauthorizedException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleCollectionForbiddenException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleCollectionInternalServerErrorException
     * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
     *
-    * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+    * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleCollection|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
     */
     public function getAuthRoleCollection(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -199,7 +195,6 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Delete a role for this resource server
-     *
      * @param string $roleCode Identifier for the role
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthRoleUnauthorizedException
@@ -208,7 +203,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\DeleteAuthRoleInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function deleteAuthRole(string $roleCode, string $fetch = self::FETCH_OBJECT)
     {
@@ -216,7 +211,6 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Get a role from this resource server by its roleCode
-     *
      * @param string $roleCode Identifier for the role
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleUnauthorizedException
@@ -225,7 +219,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetAuthRoleInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function getAuthRole(string $roleCode, string $fetch = self::FETCH_OBJECT)
     {
@@ -233,9 +227,8 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Patch a role for this resource server
-     *
      * @param string $roleCode Identifier for the role
-     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody 
+     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PatchAuthRoleBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PatchAuthRoleUnauthorizedException
@@ -244,7 +237,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PatchAuthRoleInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function patchAuthRole(string $roleCode, \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody, string $fetch = self::FETCH_OBJECT)
     {
@@ -252,9 +245,8 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Post a role for this resource server
-     *
      * @param string $roleCode Identifier for the role
-     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody 
+     * @param \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleUnauthorizedException
@@ -263,7 +255,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\PostAuthRoleInternalServerErrorException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\AuthRoleResource|\Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\ErrorResponse : \Psr\Http\Message\ResponseInterface)
      */
     public function postAuthRole(string $roleCode, \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\NewAuthRoleResource $requestBody, string $fetch = self::FETCH_OBJECT)
     {
@@ -273,7 +265,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null : \Psr\Http\Message\ResponseInterface)
      */
     public function getOpenApi(string $fetch = self::FETCH_OBJECT)
     {
@@ -281,14 +273,13 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Get the changelog in the specified format
-     *
      * @param string $format Changelog file format
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetChangelogInFormatNotFoundException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetChangelogInFormatBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null : \Psr\Http\Message\ResponseInterface)
      */
     public function getChangelogInFormat(string $format, string $fetch = self::FETCH_OBJECT)
     {
@@ -296,13 +287,12 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Get the openapi documentation in the specified format
-     *
      * @param string $format Openapi file format
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetOpenApiInFormatBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return null|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? null : \Psr\Http\Message\ResponseInterface)
      */
     public function getOpenApiInFormat(string $format, string $fetch = self::FETCH_OBJECT)
     {
@@ -314,7 +304,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetProcessingStatusForbiddenException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsProcessingStatusGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsProcessingStatusGetResponse200 : \Psr\Http\Message\ResponseInterface)
      */
     public function getProcessingStatus(string $fetch = self::FETCH_OBJECT)
     {
@@ -322,12 +312,11 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Get the count of resolved tickets for given domains and date range.
-     *
-     * @param array $queryParameters {
-     *     @var array $domains[] Array of email domains to filter by
-     *     @var string $dateFrom Start date (ISO 8601)
-     *     @var string $dateTo End date (ISO 8601)
-     * }
+     * @param array{
+     *    "domains": array, //Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
+     *    "dateFrom": string, //Start date (ISO 8601)
+     *    "dateTo": string, //End date (ISO 8601)
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetResolvedTicketCountBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetResolvedTicketCountUnauthorizedException
@@ -335,7 +324,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetResolvedTicketCountConflictException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsResolvedTicketsGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsResolvedTicketsGetResponse200 : \Psr\Http\Message\ResponseInterface)
      */
     public function getResolvedTicketCount(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {
@@ -343,12 +332,11 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
     }
     /**
      * Get the sum of ticket answers for given domains and date range.
-     *
-     * @param array $queryParameters {
-     *     @var array $domains[] Array of email domains to filter by
-     *     @var string $dateFrom Start date (ISO 8601)
-     *     @var string $dateTo End date (ISO 8601)
-     * }
+     * @param array{
+     *    "domains": array, //Array of email domains to filter by, sent as `domains[0]=a&domains[1]=b`
+     *    "dateFrom": string, //Start date (ISO 8601)
+     *    "dateTo": string, //End date (ISO 8601)
+     * } $queryParameters
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumBadRequestException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumUnauthorizedException
@@ -356,7 +344,7 @@ class Client extends \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\G
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\GetTicketAnswerSumConflictException
      * @throws \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Exception\UnexpectedStatusCodeException
      *
-     * @return \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200|\Psr\Http\Message\ResponseInterface
+     * @return ($fetch is 'object' ? \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\TicketStatisticsTicketAnswersGetResponse200 : \Psr\Http\Message\ResponseInterface)
      */
     public function getTicketAnswerSum(array $queryParameters = [], string $fetch = self::FETCH_OBJECT)
     {

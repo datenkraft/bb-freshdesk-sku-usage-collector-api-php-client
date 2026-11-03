@@ -27,15 +27,15 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
     }
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
-        if (isset($data['$ref'])) {
+        $object = new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (isset($data['$ref']) && !isset($data['type']) && !isset($data['properties']) && !isset($data['allOf'])) {
             return new Reference($data['$ref'], $context['document-origin']);
         }
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
-        }
-        $object = new \Datenkraft\Backbone\Client\FreshdeskSkuUsageCollectorApi\Generated\Model\Ticket();
-        if (null === $data || false === \is_array($data)) {
-            return $object;
         }
         if (\array_key_exists('ticketId', $data)) {
             $object->setTicketId($data['ticketId']);
@@ -80,13 +80,13 @@ class TicketNormalizer implements DenormalizerInterface, NormalizerInterface, De
         $dataArray = [];
         $dataArray['ticketId'] = $data->getTicketId();
         $dataArray['status'] = $data->getStatus();
-        if ($data->isInitialized('product') && null !== $data->getProduct()) {
+        if ($data->isInitialized('product')) {
             $dataArray['product'] = $data->getProduct();
         }
         $dataArray['source'] = $data->getSource();
-        $dataArray['createdDate'] = $data->getCreatedDate()?->format('Y-m-d\TH:i:sP');
-        $dataArray['lastUpdatedDate'] = $data->getLastUpdatedDate()?->format('Y-m-d\TH:i:sP');
-        $dataArray['resolvedDate'] = $data->getResolvedDate()?->format('Y-m-d\TH:i:sP');
+        $dataArray['createdDate'] = $data->getCreatedDate()->format('Y-m-d\TH:i:sP');
+        $dataArray['lastUpdatedDate'] = $data->getLastUpdatedDate()->format('Y-m-d\TH:i:sP');
+        $dataArray['resolvedDate'] = $data->getResolvedDate()->format('Y-m-d\TH:i:sP');
         foreach ($data as $key => $value) {
             if (preg_match('/.*/', (string) $key)) {
                 $dataArray[$key] = $value;

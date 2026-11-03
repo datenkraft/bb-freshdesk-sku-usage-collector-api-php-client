@@ -13,14 +13,10 @@ class TicketStatisticsProcessingStatusGetResponse200 extends \ArrayObject
         return array_key_exists($property, $this->initialized);
     }
     /**
-     * 
-     *
      * @var bool
      */
     protected $processing;
     /**
-     * 
-     *
      * @return bool
      */
     public function getProcessing(): bool
@@ -28,8 +24,6 @@ class TicketStatisticsProcessingStatusGetResponse200 extends \ArrayObject
         return $this->processing;
     }
     /**
-     * 
-     *
      * @param bool $processing
      *
      * @return self
